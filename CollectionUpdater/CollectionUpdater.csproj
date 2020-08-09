@@ -2,6 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>polakv93</Authors>
+    <Company />
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/polakv93/CollectionUpdater</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/polakv93/CollectionUpdater</RepositoryUrl>
   </PropertyGroup>
 
 </Project>
