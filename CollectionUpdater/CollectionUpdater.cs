@@ -85,15 +85,18 @@ namespace CollectionUpdater
 
                 UpdateDest(srcEq, dest);
             }
-
+            
+            var toAdd = new List<TSrc>();
             foreach (var src in _source)
             {
                 var destEq = _destination.SingleOrDefault(dest => _pairFunc(src, dest));
                 if (destEq == null)
                 {
-                    Add(src);
+                    toAdd.Add(src);
                 }
             }
+
+            toAdd.ForEach(Add);
         }
 
         private void Add(TSrc src)
