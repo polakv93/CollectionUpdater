@@ -155,5 +155,34 @@ namespace CollectionUpdater.Tests
 
             act.Should().Throw<NotImplementedException>();
         }
+
+        [Fact]
+        public void Should_add_all_elements_from_src_if_dest_is_empty()
+        {
+            var srcCol = new List<SimpleObj>
+            {
+                new SimpleObj { Id = 0, StringValue = "string1" },
+                new SimpleObj { Id = 0, StringValue = "string2" }
+            };
+            var destCol = new List<SimpleObj>();
+
+
+            destCol.AsCollectionUpdater(srcCol)
+                .PairUsing((src, dest) => src.Id == dest.Id)
+                .SetMapFunc((src, dest) =>
+                {
+                    dest.Id = src.Id;
+                    dest.StringValue = src.StringValue;
+                })
+                .Update();
+
+
+            destCol.Should().HaveCount(2);
+            destCol.Should().BeEquivalentTo(new List<SimpleObj>
+            {
+                new SimpleObj { Id = 0, StringValue = "string1" },
+                new SimpleObj { Id = 0, StringValue = "string2" }
+            });
+        }
     }
 }
